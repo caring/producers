@@ -1,0 +1,52 @@
+syntax = "proto3";
+package producers;
+
+option go_package = "pb";
+
+service ProducersService {
+  rpc Ping (PingRequest)                  returns (PingResponse);
+  rpc Create(CreateRequest) returns (Response) {}
+  rpc Update(UpdateRequest) returns (Response) {}
+  rpc Delete(ByIDRequest)          returns (Response) {}
+  rpc Get(ByIDRequest)             returns (Response) {}
+}
+
+// #################################
+//          Ping
+// #################################
+
+message PingRequest {
+  string data = 1;
+}
+
+message PingResponse {
+  string data = 1;
+}
+
+// #################################
+//          Shared Messages
+// #################################
+message ByIDRequest {
+  string id = 1;
+}
+
+message LoadKeyRequest {
+  repeated string keys = 1;
+}
+
+// #################################
+//          
+// #################################
+message Response {
+  string id = 1;
+  string name = 2;
+}
+
+message CreateRequest {
+  string name = 1;
+}
+
+message UpdateRequest {
+  string id = 1;
+  string name = 2;
+}
